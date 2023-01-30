@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Profile" ALTER COLUMN "contactId" DROP NOT NULL,
+ALTER COLUMN "age" SET DATA TYPE TEXT;

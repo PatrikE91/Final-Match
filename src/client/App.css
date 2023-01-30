@@ -1,0 +1,63 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+@import url(https://fonts.googleapis.com/css2?family=MedievalSharp);
+
+#root {
+  --backgroundColor: linear-gradient(#c36a2d, #eadca6);
+  --medievalFont: 'MedievalSharp';
+  font-family: var(--medievalFont);
+}
+
+.App{
+  display: grid;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("./images/background_login\ 2.jpeg");
+  background-size: cover;
+  align-items: end;
+}
+
+a:link{
+  text-decoration: none;
+  color: #c5a66d;
+}
+
+h1{
+  /* color: var(--backgroundColor);  */
+  margin-top: 10px;
+  color: black;
+
+}
+
+.login{
+  display: grid;
+  font-family: var(--medievalFont);
+  position: relative;
+  margin-bottom: 40px;
+  justify-self: center;
+}
+
+.login-button{
+  background-color: #9f845f;
+  font-weight: bold;
+}
+
+.login-form input{
+  width: 90px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  justify-self: center;
+  border-radius: 5px;
+}
+.login-form button{
+  margin-left: 5px;
+  border-radius: 5px;
+}
+
+

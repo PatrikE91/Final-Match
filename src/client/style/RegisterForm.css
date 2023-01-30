@@ -1,0 +1,40 @@
+.registration-form{
+    background-image: var(--backgroundColor);
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+}
+
+
+
+.registration-login-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(8, 70px);
+    place-items: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.upload-input{
+    margin-left: 230px;
+  
+}
+input{
+    border-radius: 5px;
+}
+
+.submit-button-registration{
+    /* margin-left: 30px; */
+    width: 90px;
+    height: 40px;
+    font-size: 20px;
+}
+
+button{
+    /* color: red; */
+    width: 70px;
+    height: 35px;
+}

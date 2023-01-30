@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  username  String     @unique
+  password  String
+  email     String     @unique
+  profile   Profile?
+  interests Interests?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  rejections Rejected[] @relation(name: "rejections")
+  rejectedBy Rejected[] @relation(name: "rejection")
+  matches    Match[]    @relation(name: "matcher")
+  matchedBy  Match[]    @relation(name: "matchee")
+
+  rooms            Room[]
+  sentMessages     Message[] @relation("SentMessages")
+  receivedMessages Message[] @relation("ReceivedMessages")
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+  firstName String?
+  lastName  String?
+  age       String?
+  pictureId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Interests {
+  id            Int     @id @default(autoincrement())
+  user          User?   @relation(fields: [userId], references: [id])
+  userId        Int?    @unique
+  favoriteGame  String?
+  favoriteBook  String?
+  favoriteMovie String?
+}
+
+model Rejected {
+  userIdA   Int
+  rejected  User     @relation(name: "rejections", fields: [userIdA], references: [id])
+  userIdB   Int
+  rejection User     @relation(name: "rejection", fields: [userIdB], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userIdA, userIdB], name: "rejectIdentifier")
+}
+
+model Match {
+  userIdA   Int
+  matcher   User     @relation(name: "matcher", fields: [userIdA], references: [id])
+  userIdB   Int
+  matchee   User     @relation(name: "matchee", fields: [userIdB], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userIdA, userIdB], name: "matchIdentifier")
+}
+
+model Room {
+  id        Int       @id @default(autoincrement())
+  users     User[]
+  userA     Int
+  userB     Int
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Message {
+  id          Int    @id @default(autoincrement())
+  room        Room   @relation(fields: [roomId], references: [id])
+  roomId      Int
+  content     String
+  sender      User   @relation(name: "SentMessages", fields: [senderId], references: [id])
+  senderId    Int
+  recipient   User   @relation(name: "ReceivedMessages", fields: [recipientId], references: [id])
+  recipientId Int
+}

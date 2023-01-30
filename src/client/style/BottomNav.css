@@ -1,0 +1,21 @@
+.menu{
+    display: grid;
+    position: absolute;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: var(--backgroundColor);
+    position: absolute;
+    width: 100vw;
+    height: 40px;
+    bottom: 0%;
+    color: #394a51;
+    text-align: center;
+}
+
+.menu a{
+    color: #394a51;
+}
+
+.icons{
+    height: 40px;
+    width: 40px;
+}

@@ -1,0 +1,89 @@
+.actions-container{
+   /* background-color: var(--backgroundColor); */
+   display: grid;
+   grid-template-rows: auto 1fr;
+   font-weight: bold;
+    color: black;
+}
+
+.actions{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* background-color: var(--backgroundColor); */
+    height: 145px;
+}
+
+.stats{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 60px 1fr;
+}
+
+.hp{
+    /* color: #394a51; */
+    font-size: 20px;
+    margin: 0 0 5px 15px;
+}
+
+progress{
+    -webkit-appearance: none;
+    border-radius: 5px;
+    appearance: none;
+    margin-top: 11px;
+}
+
+::-webkit-progress-bar {
+    color: rgb(67, 77, 85);
+    border-radius: 5px;
+    height: 10px;
+}
+  
+progress::-webkit-progress-value {
+    background-color: red;
+    border-radius: 5px;
+    transition: width 0.5s ease-in;
+}
+
+.health-points {
+    color: red;
+    width: 180px;
+}
+
+.mana-points{
+    height: 10px;
+    background-color: blue;
+    color: blue;
+    border-radius: 5px;
+    transition: width 0.5s ease-in;
+    margin-top: 9px;
+    width: 180px;
+}
+
+.mp{
+    /* color: #394a51; */
+    font-size: 20px;
+    margin: 0 0 5px 15px;
+}
+
+.attack{
+    background-color: rgb(243, 121, 121);
+}
+
+.magic{
+    background-color: rgb(136, 136, 244);
+}
+
+.defense{
+    background-color: rgb(144, 242, 144);
+}
+
+.actions button{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    place-self: center;
+    border: solid 5px white;
+    font-size: 22px;
+    font-weight: bold;
+}
+

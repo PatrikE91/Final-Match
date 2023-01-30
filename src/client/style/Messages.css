@@ -1,0 +1,130 @@
+#root{
+    height: 100vh;
+    background-image: var(--backgroundColor);
+
+}
+
+.main-container{
+    height: 844px;
+    display: grid;
+    grid-template-rows: 50px 1fr 55px;
+}
+
+.messages-container{
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    overflow: hidden;
+}
+
+.main-title{
+    background-color: var(--backgroundColor);
+    color: black;
+    padding-top: 10px;
+    font-size: 40px;
+}
+
+.conversation{
+    display: grid;
+    grid-template-rows: 1fr 40px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    'sent-messages' 
+    'post-form' ;
+}
+
+.post-form{
+    grid-area: post-form;
+} 
+
+.new-message-form{
+    border-radius: 5px;
+    height: 30px;
+    width: 240px;
+}
+.sent-messages{
+    grid-area:  sent-messages;
+    display: grid;
+    align-self: end;
+    overflow: hidden;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.recipient{
+    text-align: end;
+}
+
+.sent-messages .recipient{
+    border-left: 2px solid #6e4c41;
+  /* position: absolute; */
+  top: 50%;
+  bottom: 50%;
+}
+
+.unmatch-button{
+    grid-area: 'unmatch-button';
+    position: absolute;
+    right: 5px;
+    top:50px;
+    font-size: 16px;
+    
+}
+
+
+
+ul{
+    position: relative;
+    place-items: center;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    overflow: hidden;
+    height: auto;
+    margin-top: 10px;
+    font-size: 20px;
+}
+li{
+    display: grid;
+    list-style: none;
+}
+.room-picture{
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+
+
+.recipient{
+    text-align: end;
+}
+
+
+
+
+
+
+button {
+  background-color: #e0ab5b;
+  border-radius: 8px;
+  border-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  text-align: center;
+}
+
+.active-room{
+    outline-color: red;
+    outline-style: groove;
+}
+
+.submit-message{
+    position: absolute;
+    right: 0px;
+height: 30px;
+}
