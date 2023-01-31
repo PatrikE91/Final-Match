@@ -8,62 +8,43 @@ class Messages {
   }
 
   static async createMessage(userId, roomId, content) {
-    try {
-      const room = await Room.findRoomById(roomId);
-      // console.log("content: ", content);
-      console.log("room: ", room);
-      console.log("room id: ", roomId);
+    const room = await Room.findRoomById(roomId);
 
-      const recipientId =
-        room.users[0].id === Number(userId)
-          ? Number(room.users[1].id)
-          : Number(room.users[0].id);
+    const recipientId =
+      room.users[0].id === Number(userId)
+        ? Number(room.users[1].id)
+        : Number(room.users[0].id);
 
-
-      const message = await prisma.message.create({
-        data: {
-          content,
-          room: {
-            connect: { id: Number(roomId) },
-          },
-          sender: {
-            connect: { id: Number(userId) },
-          },
-          recipient: {
-            connect: { id: recipientId },
-          },
+    const message = await prisma.message.create({
+      data: {
+        content,
+        room: {
+          connect: { id: Number(roomId) },
         },
-      });
-      console.log("messaage: ", message);
+        sender: {
+          connect: { id: Number(userId) },
+        },
+        recipient: {
+          connect: { id: recipientId },
+        },
+      },
+    });
 
-      return message;
-    } catch (e) {
-      console.error(e);
-    }
+    return message;
   }
 
   static async findMessages() {
-    try {
-      const messages = await prisma.message.findMany();
-      console.log("HERE: ", messages);
-      return messages;
-    } catch (e) {
-      console.error(e);
-    }
+    const messages = await prisma.message.findMany();
+    return messages;
   }
 
   static async findMessagesByRoomId(roomId) {
-    try {
-      const messages = await prisma.message.findMany({
-        where: {
-          roomId: Number(roomId),
-        },
-      });
-      console.log(messages);
-      return messages;
-    } catch (e) {
-      console.error(e);
-    }
+    const messages = await prisma.message.findMany({
+      where: {
+        roomId: Number(roomId),
+      },
+    });
+    return messages;
   }
 }
 

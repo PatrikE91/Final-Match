@@ -17,13 +17,11 @@ const register = async (req, res) => {
   });
 
   if (findUser !== null) {
-    console.log("esiste gia:", findUser);
     return res.status(418).json({
       error: "That username is taken already",
     });
   }
   const hash = await bcrypt.hash(password, 10);
-  console.log("hash: ", hash);
 
   const createdUser = await prisma.user.create({
     data: {
@@ -44,8 +42,6 @@ const register = async (req, res) => {
       interests: true,
     },
   });
-  console.log("createdUser request:", createdUser);
-
   delete createdUser.password;
 
   return res.status(201).json({ data: createdUser });

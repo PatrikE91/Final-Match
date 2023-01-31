@@ -1,11 +1,10 @@
 import { useState } from "react";
 import "../style/MainActions.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const MainActions = (props) => {
-  // const { users, setUsers, matches, setMatches, updateState, setUpdateState } = props;
-  const { setUpdateState, getMatches, allMatches } = props;
+  const { setUpdateState, allMatches } = props;
   const [currentValue, setCurrentValue] = useState("100");
   const apiUrl = "http://localhost:4000";
   const loggedUserId = localStorage.getItem("userId");
@@ -19,7 +18,6 @@ const MainActions = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("data match", data.match);
         setUpdateState(data.match.userIdB);
         notifyMatch(data.match);
 
@@ -30,12 +28,10 @@ const MainActions = (props) => {
 
   const notifyMatch = (match) => {
     let bool = false;
-    console.log("all MATCHES", allMatches);
     const isAMatch = allMatches.find(
       (e) => e.userIdA === match.userIdB && e.userIdB === match.userIdA
     );
     isAMatch ? (bool = true) : (bool = false);
-    console.log("is match:", isAMatch);
 
     if (bool) {
       toast.success("Hey, is a match!", {

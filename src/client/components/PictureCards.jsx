@@ -1,6 +1,4 @@
 import "../style/HomePage.css";
-// import chopper from "../../images/chopper.PNG";
-import { useState, useEffect } from "react";
 
 export default function PictureCards(props) {
   const { users } = props;

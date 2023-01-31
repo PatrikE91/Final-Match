@@ -8,10 +8,9 @@ import RegisterForm from "./components/RegisterForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Messages from "./components/Messages";
 import Profile from "./components/Profile";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// import './components/custom.scss'
 function App() {
   const [users, setUsers] = useState([]);
   const [allUsers, setAlUsers] = useState([]);
@@ -24,30 +23,7 @@ function App() {
   const [rejections, setRejections] = useState([]);
   const [updateState, setUpdateState] = useState(0);
   const loggedUserId = localStorage.getItem("userId");
-  // const displayedUserId = localStorage.getItem("displayedUserId");
-  // const notifyMatch = () => {
-  //   let bool = false;
-  //   matches.forEach((match) => {
-  //     const isAMatch = allMatches.find(
-  //       (e) => e.userIdA === match.userIdB && e.userIdB === match.userIdA
-  //     );
-  //     console.log("is match:", isAMatch);
-  //     return isAMatch ? (bool = true) : (bool = false);
-  //   });
 
-  //   if (bool) {
-  //     toast.success('Hey, is a match!', {
-  //       position: "top-center",
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //       });
-  //   }
-  // };
 
   useEffect(() => {
     getMatches();
@@ -62,7 +38,6 @@ function App() {
     fetch(apiUrl + `/match`)
       .then((res) => res.json())
       .then((data) => {
-        // notifyMatch();
         setAllMatches(data.matches);
         const myMatches = [];
         data.matches.forEach((match) => {
@@ -79,7 +54,6 @@ function App() {
     fetch(apiUrl + `/rejected`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log("before for each", data.rejections);
         const myRejections = [];
         data.rejections.forEach((element) => {
           if (element.userIdA === Number(loggedUserId)) {
@@ -87,9 +61,7 @@ function App() {
             return;
           }
         });
-        // console.log("data", myRejections);
         setRejections(myRejections);
-        // notifyMatch();
       });
   };
 
@@ -120,7 +92,6 @@ function App() {
     fetch(apiUrl + "/users")
       .then((res) => res.json())
       .then((data) => {
-        // notifyMatch();
         setUsers(displayUsers(data.users));
         setAlUsers(data.users);
       });
@@ -129,7 +100,7 @@ function App() {
   useEffect(() => {
     const idToFind = localStorage.getItem("userId");
     const myself = allUsers.find(({ id }) => id === Number(idToFind));
-    return myself ? setMyself(myself) : console.log("lol", allUsers);
+    return myself ? setMyself(myself) : false;
   }, [allUsers]);
 
   return (

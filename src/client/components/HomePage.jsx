@@ -2,7 +2,6 @@ import "../style/HomePage.css";
 import PictureCards from "./PictureCards";
 import MainActions from "./MainActions";
 import BottomNav from "./BottomNav";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import "react-notifications-component/dist/theme.css";
@@ -43,7 +42,6 @@ export default function UserForm(props) {
           notifyMatch={notifyMatch}
         />
         <BottomNav />
-        {/* <ToastContainer/> */}
       </main>
     </>
   );

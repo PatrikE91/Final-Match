@@ -3,7 +3,6 @@ const { Reject } = require("../domain/rejected");
 const rejectUser = async (req, res) => {
   try {
     const { userId, userToReject } = req.params;
-    console.log("IM HERE");
     const reject = await Reject.createRejection(userId, userToReject);
     return res.status(201).json({ status: "success", rejection: reject });
   } catch (e) {

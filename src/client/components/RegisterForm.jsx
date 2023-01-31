@@ -58,15 +58,12 @@ export default function RegisterForm() {
     formData.append("email", user.email);
     formData.append("age", getAge(user.age));
     formData.append("pictureId", URL.createObjectURL(picture));
-    console.log('picture url:', URL.createObjectURL(picture))
     fetch(apiUrl + "/users/register", {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log("RESPONSE REGISTER", data);
-      });
+      .then((data) => {});
   };
 
   const handleChange = (e) => {
@@ -80,7 +77,6 @@ export default function RegisterForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("new user", user);
     handleRegister(user, userPicture);
     navigate("/");
   };
@@ -148,14 +144,16 @@ export default function RegisterForm() {
         <label htmlFor="image">Profile Picture:</label>
 
         <input
-        className="upload-input"
+          className="upload-input"
           type="file"
           name="image"
           placeholder="picture"
           onChange={(e) => setUserPicture(e.target.files[0])}
         />
         <div></div>
-        <button className="submit-button-registration" type="submit">Submit</button>
+        <button className="submit-button-registration" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

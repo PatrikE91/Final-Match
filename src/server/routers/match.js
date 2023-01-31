@@ -1,6 +1,5 @@
 const express = require('express');
 const {validateAuthentication} = require('../middleware/authentication')
-// const path = require('path')
 const router = express.Router();
 const {
     createMatch,

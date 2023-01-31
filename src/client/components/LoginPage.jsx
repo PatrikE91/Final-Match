@@ -1,10 +1,7 @@
-// import { useJwt, decodeToken, isExpired } from "react-jwt";
 import UserForm from "./UserForm";
 import { useNavigate, Link } from "react-router-dom";
-// import {jwt} from 'jsonwebtoken'
 
 export default function LoginPage(props) {
-  // const token = localStorage.getItem("token");
   const apiUrl = "http://localhost:4000";
   const navigate = useNavigate();
 
@@ -19,11 +16,9 @@ export default function LoginPage(props) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("HELLO THERE", data);
-
         localStorage.setItem("token", data.data);
         localStorage.setItem("userId", data.userId);
-      return  data.status === "failed" ? false : navigate("/home_page");
+        return data.status === "failed" ? false : navigate("/home_page");
       });
   };
 

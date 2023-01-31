@@ -1,7 +1,6 @@
 const express = require("express");
 require("express-async-errors");
 require("dotenv").config();
-// const bodyParser = require('body-parser') 
 const { Prisma } = require("@prisma/client");
 
 const app = express();
@@ -21,15 +20,15 @@ app.use(express.static("images"));
 
 const userRouter = require("./routers/users");
 const matchRouter = require("./routers/match");
-const messagesRouter = require('./routers/messages')
-const roomRouter = require('./routers/room')
-const rejectedRouter = require('./routers/rejected')
+const messagesRouter = require("./routers/messages");
+const roomRouter = require("./routers/room");
+const rejectedRouter = require("./routers/rejected");
 
 app.use("/users", userRouter);
-app.use('/match', matchRouter)
-app.use('/messages', messagesRouter)
-app.use('/rooms', roomRouter)
-app.use('/rejected', rejectedRouter)
+app.use("/match", matchRouter);
+app.use("/messages", messagesRouter);
+app.use("/rooms", roomRouter);
+app.use("/rejected", rejectedRouter);
 app.use("/images", express.static("images"));
 
 app.use((e, req, res, next) => {
@@ -52,7 +51,6 @@ app.use((e, req, res, next) => {
       return res.status(409).json({ error: "That resource does not exist" });
     }
   }
-  console.log(e);
   res.status(500).json({ error: "Oooooops" });
 });
 

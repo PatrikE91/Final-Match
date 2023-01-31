@@ -5,13 +5,11 @@ const { Messages } = require("../domain/messages");
 const createMessage = async (req, res) => {
   const { userId, roomId } = req.params;
   const { content } = req.body;
-  console.log("BODY REQ:", req.body);
   try {
     if (!content) {
       return res.status(400).json({ message: "Scrivi qualcosa" });
     }
     const message = await Messages.createMessage(userId, roomId, content);
-    console.log(message);
     if (!message) {
       return res.status(400).json({ message: "Unable to create the message" });
     }
@@ -43,11 +41,8 @@ const getMessagesByRoomId = async (req, res) => {
   }
 };
 
-
-
 module.exports = {
   createMessage,
   getMessages,
   getMessagesByRoomId,
-
 };

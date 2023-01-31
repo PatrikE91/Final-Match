@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import BottomNav from "./BottomNav";
 import "../style/Messages.css";
 import MessagesForm from "./MessagesForm";
-// import { Room } from "../../server/domain/room";
 
 const Messages = (props) => {
   const [messages, setMessages] = useState([]);
@@ -18,7 +17,6 @@ const Messages = (props) => {
     fetch(apiUrl + "/users")
       .then((res) => res.json())
       .then((data) => {
-        // console.log("ALL USERS: ", data);
         setAllUsers(data.users);
       });
   };
@@ -84,17 +82,6 @@ const Messages = (props) => {
   };
 
   const unMatch = (roomId) => {
-    // console.log("deleted room", apiUrl + "/rooms/" + Number(roomId));
-
-    // fetch(apiUrl + "/rooms/" + Number(roomId), {
-    //   method: "DELETE",
-    //   headers: { "Content-Type": "application/json" },
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("deleted room", data);
-    //     getRooms();
-    //   });
     setDeletedRooms([...deletedRooms, roomId]);
     getRooms();
   };
@@ -123,7 +110,11 @@ const Messages = (props) => {
                       <img
                         src={userB.profile.pictureId}
                         alt=""
-                        className={room.id === roomId? "room-picture active-room": "room-picture"}
+                        className={
+                          room.id === roomId
+                            ? "room-picture active-room"
+                            : "room-picture"
+                        }
                       ></img>
                       <p>{userB.username}</p>
                     </li>
@@ -134,9 +125,9 @@ const Messages = (props) => {
         </div>
         <div className="conversation">
           <div className="sent-messages">
-          <button className="unmatch-button" onClick={() => unMatch(roomId)}>
-            UnMatch
-          </button>
+            <button className="unmatch-button" onClick={() => unMatch(roomId)}>
+              UnMatch
+            </button>
             {messages
               ? messages.map((message) => {
                   const roomToIgnore = deletedRooms.find(
